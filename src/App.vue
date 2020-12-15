@@ -1,15 +1,13 @@
 <template>
-  <Welcome />
+  <div id="app">
+    <nav><router-link to="/">NAVBAR</router-link></nav>
+    <router-view />
+  </div>
 </template>
 
 <script>
-import Welcome from "./components/Welcome.vue";
-
 export default {
   name: "App",
-  components: {
-    Welcome,
-  },
 };
 </script>
 
