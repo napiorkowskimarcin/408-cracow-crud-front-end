@@ -8,13 +8,13 @@
       <label for="password" class="form-label">Password</label>
       <input type="password" class="form-control" v-model="posts.password" />
     </div>
-    <button type="submit" class="btn btn-primary">Sigin</button>
+    <button type="submit" class="btn btn-primary">Create account</button>
   </form>
 </template>
 
 <script>
 export default {
-  name: "Login",
+  name: "Register",
   data() {
     return {
       posts: {
@@ -27,7 +27,7 @@ export default {
     userLogin(event) {
       event.preventDefault();
       this.axios
-        .post("http://localhost:3000/api/user/signin", this.posts)
+        .post("http://localhost:3000/api/user/signup", this.posts)
         .then((result) => {
           console.log(result);
         });
