@@ -1,15 +1,21 @@
 <template>
   <div class="hello">
     Welcome !
-    <div class="if-logged-block" v-if="isLoggedIn">
-      You are logged in. See your tasks:
+    <div class="if-logged-block tasks-list" v-if="isLoggedIn">
+      You are logged in. See and edit tasks:
 
-      <ul>
-        <li v-for="(item, index) in taskList" :key="index">
-          <!--  -->
-          {{ item }}
-        </li>
-      </ul>
+      <router-link
+        v-for="(item, index) in taskList"
+        :key="index"
+        :to="`/update/${item.todo_id}`"
+        >{{ item.todo_name }}</router-link
+      >
+
+      <div class="tab-create">
+        <br />
+        <p>Want to create a new one?</p>
+        <router-link to="/create">CREATE A TASK</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -25,26 +31,28 @@ export default {
   },
   data() {
     return {
-      dataReady: false,
       taskList: undefined,
     };
   },
 
   async mounted() {
-    console.log("See userpage token:" + this.accessToken);
     let response = await this.axios.get("http://localhost:3000/api/todos", {
       headers: {
         Authorization: `Bearer ${this.accessToken}`,
       },
     });
-    this.taskList = response.data.taskNameArray;
-    console.log(this.taskList);
+    this.taskList = response.data.taskNameArray.rows;
   },
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-ul {
-  list-style-type: none;
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-primary {
+  color: white;
 }
 </style>

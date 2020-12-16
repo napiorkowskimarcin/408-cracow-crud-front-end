@@ -2,9 +2,14 @@
   <div class="hello">
     Welcome !
     <div class="if-logged-block" v-if="isLoggedIn">
-      You are logged in. Go to your:
+      You are logged in. You may go to :
       <div>
-        <router-link to="/usertasks">list of tasks</router-link>
+        <router-link to="/usertasks">-list of tasks</router-link>
+        <br />
+        <router-link to="/create">-create new task</router-link>
+        <br />
+        <!-- <router-link to="/">-create new task</router-link>
+        <br /> -->
       </div>
     </div>
 

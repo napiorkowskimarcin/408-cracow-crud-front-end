@@ -1,7 +1,7 @@
 <template>
   <form @submit="userLogin" method="post">
     <div class="mb-3">
-      <label for="name" class="form-label">Email address</label>
+      <label for="name" class="form-label">Name</label>
       <input
         type="name"
         class="form-control"
