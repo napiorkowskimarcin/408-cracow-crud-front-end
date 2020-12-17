@@ -27,6 +27,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
       </form>
+      <br />
       <form @submit="removeTask" method="post">
         <button type="submit" class="btn btn-primary red">Remove task</button>
       </form>

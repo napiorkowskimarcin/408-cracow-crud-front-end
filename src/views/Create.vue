@@ -22,7 +22,7 @@
       </div>
       <button type="submit" class="btn btn-primary">Create</button>
     </form>
-    <div v-if="isLoggedIn">
+    <div v-if="!isLoggedIn">
       You are not allowed to be here. Please sign in/up
     </div>
   </div>

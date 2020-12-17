@@ -2,7 +2,9 @@
   <div class="hello">
     Welcome !
     <div class="if-logged-block tasks-list" v-if="isLoggedIn">
-      You are logged in. You can view, edit and remove tasks:
+      <p class="welcome-text">
+        You are logged in. You can view, edit and remove tasks:
+      </p>
 
       <router-link
         v-for="(item, index) in taskList"
@@ -17,6 +19,7 @@
         <router-link to="/create">CREATE A TASK</router-link>
       </div>
     </div>
+    <div v-if="!isLoggedIn">Please sign in/up.</div>
   </div>
 </template>
 
@@ -46,13 +49,16 @@ export default {
 };
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss">
+<style lang="scss" scoped>
 .tasks-list {
   display: flex;
   flex-direction: column;
-}
 
-.btn-primary {
-  color: white;
+  a {
+    color: rgb(54, 52, 165);
+  }
+  .red {
+    background-color: red;
+  }
 }
 </style>

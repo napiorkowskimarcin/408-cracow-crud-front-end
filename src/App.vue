@@ -27,7 +27,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -37,6 +37,7 @@ export default {
   nav {
     background-color: #eee;
     a {
+      color: rgb(17, 4, 202);
       margin-left: 30px;
     }
   }
