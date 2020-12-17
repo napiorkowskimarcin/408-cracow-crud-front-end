@@ -1,6 +1,15 @@
 <template>
   <div id="app">
-    <nav><router-link to="/">NAVBAR</router-link></nav>
+    <nav v-if="!isLoggedIn">
+      <router-link to="/">Home</router-link>
+      <router-link to="/login">Signin</router-link>
+      <router-link to="/signup">Signup</router-link>
+    </nav>
+    <nav v-if="isLoggedIn">
+      <router-link to="/">Home</router-link>
+      <router-link to="/create">Create task</router-link>
+      <router-link to="/usertasks">List of tasks</router-link>
+    </nav>
     <div class="container">
       <router-view />
     </div>
@@ -8,8 +17,13 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "App",
+  computed: {
+    ...mapGetters(["isLoggedIn"]),
+  },
 };
 </script>
 
@@ -22,6 +36,9 @@ export default {
   color: #2c3e50;
   nav {
     background-color: #eee;
+    a {
+      margin-left: 30px;
+    }
   }
 }
 </style>

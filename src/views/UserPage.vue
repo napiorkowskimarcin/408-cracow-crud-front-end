@@ -2,7 +2,7 @@
   <div class="hello">
     Welcome !
     <div class="if-logged-block tasks-list" v-if="isLoggedIn">
-      You are logged in. See and edit tasks:
+      You are logged in. You can view, edit and remove tasks:
 
       <router-link
         v-for="(item, index) in taskList"

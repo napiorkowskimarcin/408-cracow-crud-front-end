@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     Welcome !
-    <div class="if-logged-block" v-if="isLoggedIn">
+    <div class="if-logged-block links" v-if="isLoggedIn">
       You are logged in. You may go to :
       <div>
         <router-link to="/usertasks">-list of tasks</router-link>
@@ -17,7 +17,7 @@
       <div>
         <router-link to="/login">LOGIN PAGE</router-link>
       </div>
-      <div v-if="!isLoggedIn">
+      <div>
         <router-link to="/signup">SIGN UP PAGE</router-link>
       </div>
 
