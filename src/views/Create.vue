@@ -1,35 +1,41 @@
 <template>
-  <form @submit="createTask" method="post">
-    <div class="mb-3">
-      <br />
-      <label for="taskName" class="form-label"> Task name</label>
-      <input
-        type="taskName"
-        class="form-control"
-        v-model="posts.taskName"
-        autocomplete="off"
-      />
+  <div>
+    <form @submit="createTask" method="post" v-if="isLoggedIn">
+      <div class="mb-3">
+        <br />
+        <label for="taskName" class="form-label"> Task name</label>
+        <input
+          type="taskName"
+          class="form-control"
+          v-model="posts.taskName"
+          autocomplete="off"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="taskDescription" class="form-label">Task description</label>
+        <input
+          type="taskDescription"
+          class="form-control"
+          v-model="posts.taskDescription"
+          autocomplete="off"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+    <div v-if="isLoggedIn">
+      You are not allowed to be here. Please sign in/up
     </div>
-    <div class="mb-3">
-      <label for="taskDescription" class="form-label">Task description</label>
-      <input
-        type="taskDescription"
-        class="form-control"
-        v-model="posts.taskDescription"
-        autocomplete="off"
-      />
-    </div>
-    <button type="submit" class="btn btn-primary">Create</button>
-  </form>
+  </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "Login",
   computed: {
     ...mapState({ accessToken: "accessToken", username: "username" }),
+    ...mapGetters(["isLoggedIn"]),
   },
   data() {
     return {
