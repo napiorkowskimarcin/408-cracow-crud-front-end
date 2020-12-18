@@ -1,6 +1,7 @@
 <template>
   <div>
-    <form @submit="createTask" method="post" v-if="isLoggedIn">
+    <form @submit="createTask" method="post" v-if="isLoggedIn" class="card">
+      <h2>CREATE A TASK</h2>
       <div class="mb-3">
         <br />
         <label for="taskName" class="form-label"> Task name</label>
@@ -67,7 +68,20 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.btn-primary {
-  color: white;
+.card {
+  h2 {
+    margin-bottom: 30px;
+  }
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  input {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .btn {
+    max-width: 150px;
+    margin: 0 auto;
+  }
 }
 </style>

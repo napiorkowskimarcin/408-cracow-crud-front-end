@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    Welcome !
+    <h2>Welcome !</h2>
     <div class="if-logged-block links" v-if="isLoggedIn">
       You are logged in. You may go to :
       <div>
@@ -12,9 +12,11 @@
     </div>
 
     <div class="if-not-logged-block" v-if="!isLoggedIn">
-      Feel free to sign in/ up.
-      <br />
-      <br />
+      <p class="router-links">
+        Feel free to <router-link to="/login">sign in</router-link> or
+        <router-link to="/signup">sign up</router-link>.
+      </p>
+
       <br />
       <div class="get-users">
         <h4>//Temporary - for faster tests.</h4>
@@ -56,8 +58,5 @@ export default {
 <style lang="scss" scoped>
 ul {
   list-style-type: none;
-}
-div a {
-  color: rgb(54, 52, 165);
 }
 </style>

@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <nav v-if="!isLoggedIn">
+    <nav v-if="!isLoggedIn" class="navbar navbar-expand-lg navbar-dark bg-dark">
       <router-link to="/">Home</router-link>
       <router-link to="/login">Signin</router-link>
       <router-link to="/signup">Signup</router-link>
     </nav>
-    <nav v-if="isLoggedIn">
+    <nav v-if="isLoggedIn" class="navbar navbar-expand-lg navbar-dark bg-dark">
       <router-link to="/">Home</router-link>
       <router-link to="/create">Create task</router-link>
       <router-link to="/usertasks">List of tasks</router-link>
@@ -17,12 +17,13 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 
 export default {
   name: "App",
   computed: {
     ...mapGetters(["isLoggedIn"]),
+    ...mapState({ accessToken: "accessToken", username: "username" }),
   },
 };
 </script>
@@ -35,10 +36,15 @@ export default {
   text-align: center;
   color: #2c3e50;
   nav {
-    background-color: #eee;
+    height: 65px;
+    margin-bottom: 50px;
     a {
-      color: rgb(17, 4, 202);
-      margin-left: 30px;
+      margin-left: 90px;
+      color: white;
+      transition: 0.3s;
+      &:hover {
+        color: lightblue;
+      }
     }
   }
 }
