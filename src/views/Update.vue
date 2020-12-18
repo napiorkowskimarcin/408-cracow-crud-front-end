@@ -61,9 +61,6 @@ export default {
     };
   },
   async mounted() {
-    //
-
-    //
     let id = this.$route.params.Id;
     let response = await this.axios.get(
       `http://localhost:3000/api/todos/${id}`,
@@ -81,6 +78,7 @@ export default {
   },
   methods: {
     //method 1 - update task
+    //UPDATE TASK
     async updateTask(event) {
       event.preventDefault();
       const data = {

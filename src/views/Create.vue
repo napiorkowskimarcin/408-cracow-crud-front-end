@@ -21,6 +21,7 @@
           autocomplete="off"
         />
       </div>
+      <p class="text-danger">{{ message }}</p>
       <button type="submit" class="btn btn-primary">Create</button>
     </form>
     <div v-if="!isLoggedIn">
@@ -44,11 +45,18 @@ export default {
         taskName: null,
         taskDescription: null,
       },
+      message: null,
     };
   },
   methods: {
     async createTask(event) {
       event.preventDefault();
+      if (!this.posts.taskName) {
+        return (this.message = "name of taskrequired");
+      }
+      if (!this.posts.taskDescription) {
+        return (this.message = "description of the of task required");
+      }
       const data = {
         taskName: this.posts.taskName,
         taskDescription: this.posts.taskDescription,

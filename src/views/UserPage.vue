@@ -1,17 +1,25 @@
 <template>
   <div class="hello">
-    Welcome !
     <div class="if-logged-block tasks-list" v-if="isLoggedIn">
-      <p class="welcome-text">
-        You are logged in. You can view, edit and remove tasks:
-      </p>
+      <table class="table">
+        <thead class="thead-dark ">
+          <tr>
+            <th>Task</th>
+            <th>Description</th>
+            <th>Modify</th>
+          </tr>
+        </thead>
 
-      <router-link
-        v-for="(item, index) in taskList"
-        :key="index"
-        :to="`/update/${item.todo_id}`"
-        >{{ item.todo_name }}</router-link
-      >
+        <tr v-for="(item, index) in taskList" :key="index">
+          <td>{{ item.todo_name }}</td>
+          <td>{{ item.todo_desc }}</td>
+          <td>
+            <router-link :to="`/update/${item.todo_id}`"
+              >Change it!</router-link
+            >
+          </td>
+        </tr>
+      </table>
 
       <div class="tab-create">
         <br />
@@ -19,7 +27,10 @@
         <router-link to="/create">CREATE A TASK</router-link>
       </div>
     </div>
-    <div v-if="!isLoggedIn">Please sign in/up.</div>
+    <div v-if="!isLoggedIn">
+      <h2>Welcome !</h2>
+      <p>Please sign in/up.</p>
+    </div>
   </div>
 </template>
 
@@ -39,6 +50,7 @@ export default {
   },
 
   async mounted() {
+    //GET TASK LIST OF USER SAVED IN TOKEN
     let response = await this.axios.get("http://localhost:3000/api/todos", {
       headers: {
         Authorization: `Bearer ${this.accessToken}`,
@@ -54,9 +66,6 @@ export default {
   display: flex;
   flex-direction: column;
 
-  a {
-    color: rgb(54, 52, 165);
-  }
   .red {
     background-color: red;
   }

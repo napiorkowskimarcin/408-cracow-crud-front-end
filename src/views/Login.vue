@@ -50,16 +50,17 @@ export default {
   methods: {
     //CREATE A TOKEN STORED IN VUEX STORE
     ...mapMutations(["setUser", "setToken"]),
-    //CREATE A FUNCTION TO LOG IN AN USER
+    //SIGN IN - CHECK IF NAME AND PASSWORD IS NOT EMPTY
     async userLogin(event) {
       event.preventDefault();
-      console.log(this.posts.name);
+
       if (!this.posts.name) {
         return (this.message = "name required");
       }
       if (!this.posts.password) {
         return (this.message = "password required");
       }
+      //TRY TO SIGN IN  - HANDLE SIMPLE SITUATIONS (INCORRECT NAME, PASSWORD)
       try {
         let response = await this.axios.post(
           "http://localhost:3000/api/user/signin",

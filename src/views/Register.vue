@@ -5,7 +5,9 @@
       method="post"
       autocomplete="off"
       v-if="!isLoggedIn"
+      class="card"
     >
+      <h2>CREATE AN ACCOUNT</h2>
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
         <input
@@ -25,6 +27,7 @@
         />
       </div>
       <button type="submit" class="btn btn-primary">Create account</button>
+      <p class="text-danger">{{ message }}</p>
     </form>
 
     <div v-if="isLoggedIn">
@@ -46,20 +49,55 @@ export default {
         name: null,
         password: null,
       },
+      message: null,
     };
   },
   methods: {
-    userRegister(event) {
+    //SIGN UP - CHECK IF NAME AND PASSWORD IS NOT EMPTY
+    async userRegister(event) {
       event.preventDefault();
-      this.axios
-        .post("http://localhost:3000/api/user/signup", this.posts)
-        .then((result) => {
-          console.log(result);
-        });
+      if (!this.posts.name) {
+        return (this.message = "name required");
+      }
+      if (!this.posts.password) {
+        return (this.message = "password required");
+      }
+      //TRY TO SIGN UP  - HANDLE SIMPLE SITUATIONS (EXISTING NAME, EMPTY NAME OR PASSWORD INPUT)
+      try {
+        let response = await this.axios.post(
+          "http://localhost:3000/api/user/signup",
+          this.posts
+        );
+
+        if (!response.data.created) {
+          return (this.message = response.data.message);
+        }
+        this.$router.push("/login");
+        // this.$router.push("/login");
+      } catch (error) {
+        this.message = error.response.data.message;
+      }
     },
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.card {
+  h2 {
+    margin-bottom: 30px;
+  }
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  input {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .btn {
+    max-width: 150px;
+    margin: 0 auto;
+  }
+}
+</style>

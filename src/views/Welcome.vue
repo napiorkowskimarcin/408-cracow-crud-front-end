@@ -48,6 +48,7 @@ export default {
   },
 
   mounted() {
+    //GET LIST OF USERS - EASIER TO TEST IF EVERYTHING WORKS AS IS SHOULD
     this.axios.get("http://localhost:3000/api/users").then((res) => {
       this.list = res.data;
     });
