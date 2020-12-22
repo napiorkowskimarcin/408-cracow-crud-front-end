@@ -51,12 +51,19 @@ export default {
 
   async mounted() {
     //GET TASK LIST OF USER SAVED IN TOKEN
-    let response = await this.axios.get("http://localhost:3000/api/todos", {
-      headers: {
-        Authorization: `Bearer ${this.accessToken}`,
-      },
-    });
-    this.taskList = response.data.taskNameArray.rows;
+    try {
+      let response = await this.axios.get(
+        "https://mn-cracow-back.herokuapp.com/api/todos",
+        {
+          headers: {
+            Authorization: `Bearer ${this.accessToken}`,
+          },
+        }
+      );
+      this.taskList = response.data.taskNameArray.rows;
+    } catch (error) {
+      console.log(error);
+    }
   },
 };
 </script>

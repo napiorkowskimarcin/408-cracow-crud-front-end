@@ -63,7 +63,7 @@ export default {
   async mounted() {
     let id = this.$route.params.Id;
     let response = await this.axios.get(
-      `http://localhost:3000/api/todos/${id}`,
+      `https://mn-cracow-back.herokuapp.com/api/todos/${id}`,
       {
         headers: {
           Authorization: `Bearer ${this.accessToken}`,

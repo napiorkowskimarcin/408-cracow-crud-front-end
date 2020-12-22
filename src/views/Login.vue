@@ -63,7 +63,7 @@ export default {
       //TRY TO SIGN IN  - HANDLE SIMPLE SITUATIONS (INCORRECT NAME, PASSWORD)
       try {
         let response = await this.axios.post(
-          "http://localhost:3000/api/user/signin",
+          "https://mn-cracow-back.herokuapp.com/api/user/signin",
           this.posts
         );
         response = response.data;

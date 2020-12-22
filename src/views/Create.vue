@@ -51,6 +51,7 @@ export default {
   methods: {
     async createTask(event) {
       event.preventDefault();
+
       if (!this.posts.taskName) {
         return (this.message = "name of taskrequired");
       }
@@ -61,12 +62,21 @@ export default {
         taskName: this.posts.taskName,
         taskDescription: this.posts.taskDescription,
       };
+      console.log(this.accessToken);
 
-      await this.axios.post("http://localhost:3000/api/todos/create", data, {
-        headers: {
-          Authorization: `Bearer ${this.accessToken}`,
-        },
-      });
+      try {
+        await this.axios.post(
+          "https://mn-cracow-back.herokuapp.com/api/todos/create",
+          data,
+          {
+            headers: {
+              Authorization: `Bearer ${this.accessToken}`,
+            },
+          }
+        );
+      } catch (error) {
+        console.log(error);
+      }
 
       this.$router.push("/usertasks");
     },

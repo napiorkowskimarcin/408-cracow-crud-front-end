@@ -65,7 +65,7 @@ export default {
       //TRY TO SIGN UP  - HANDLE SIMPLE SITUATIONS (EXISTING NAME, EMPTY NAME OR PASSWORD INPUT)
       try {
         let response = await this.axios.post(
-          "http://localhost:3000/api/user/signup",
+          "https://mn-cracow-back.herokuapp.com/api/user/signup",
           this.posts
         );
 
