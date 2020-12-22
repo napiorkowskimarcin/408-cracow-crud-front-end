@@ -87,18 +87,22 @@ export default {
         taskId: this.$route.params.Id,
       };
 
-      await this.axios.post("http://localhost:3000/api/todos/update", data, {
-        headers: {
-          Authorization: `Bearer ${this.accessToken}`,
-        },
-      });
+      await this.axios.post(
+        "https://mn-cracow-back.herokuapp.com/api/todos/update",
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${this.accessToken}`,
+          },
+        }
+      );
       this.$router.push("/usertasks");
     },
     //method 1 - remove task
     async removeTask(event) {
       event.preventDefault();
       await this.axios.delete(
-        `http://localhost:3000/api/todos/delete/${this.$route.params.Id}`,
+        `https://mn-cracow-back.herokuapp.com/api/todos/delete/${this.$route.params.Id}`,
         {
           headers: {
             Authorization: `Bearer ${this.accessToken}`,

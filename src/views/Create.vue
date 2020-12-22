@@ -62,7 +62,6 @@ export default {
         taskName: this.posts.taskName,
         taskDescription: this.posts.taskDescription,
       };
-      console.log(this.accessToken);
 
       try {
         await this.axios.post(
